@@ -1,0 +1,8 @@
+---
+- name: Get Service
+  hosts: all
+
+  tasks:
+
+  - name: Getting a list of services on my machine
+    ansible.windows.win_shell:  Get-Service
