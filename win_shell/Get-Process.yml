@@ -1,0 +1,13 @@
+---
+- name: Get Process
+  hosts: all
+
+  tasks:
+
+  - name: Getting a list of processes on my machine
+    register: processlist
+    win_shell:  Get-Process
+
+  - name: Printing processlist list
+    ansible.builtin.debug:
+      var: processlist
