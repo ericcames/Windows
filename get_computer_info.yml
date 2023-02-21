@@ -2,9 +2,7 @@
 - name: What is my computer information
   hosts: all
   gather_facts: no
-  collections:
-    - ansible.windows 
-  
+    
   tasks:
   
   - name: Issue the powershell command to get the current computer info
