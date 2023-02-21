@@ -5,4 +5,9 @@
   tasks:
 
   - name: Getting a list of services on my machine
-    win_shell:  Get-Service
+    register: servicelist
+    ansible.windows.win_shell:  Get-Service
+
+  - name: Printing service list
+    ansible.builtin.debug:
+      var: servicelist
