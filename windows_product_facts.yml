@@ -5,4 +5,9 @@
   tasks:
 
   - name: Get product id and product key
+    register: product_facts
     ansible.builtin.win_product_facts:
+
+  - name: Printing product_facts
+    ansible.builtin.debug:
+      var: product_facts
