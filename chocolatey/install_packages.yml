@@ -19,11 +19,11 @@
 
     - name: Check python version
       register: check_python_version
-      ansible.windows.win_command: python --version
+      ansible.builtin.win_command: python --version
       
     - name: Check nodejs version
       register: check_node_version
-      ansible.windows.win_command: node --version
+      ansible.builtin.win_command: node --version
       
     - name: Print the version of the software installed
       ansible.builtin.debug:
