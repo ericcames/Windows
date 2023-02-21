@@ -8,3 +8,8 @@
     win_feature:
       name: Web-Server
       state: present
+
+  - name: Ensuring Web-Server is started
+    win_service:
+      name: W3Svc
+      state: started
