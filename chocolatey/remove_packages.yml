@@ -1,0 +1,16 @@
+---
+- name: Remove Specific packages using Chocolatey
+  hosts: all
+  gather_facts: false
+  vars:
+    choco_packages:
+      - name: nodejs
+      - name: python
+
+  tasks:
+
+    - name: Remove packages sequentially
+      loop: "{{ choco_packages }}"
+      chocolatey.chocolatey.win_chocolatey:
+        name: "{{ item.name }}"
+        state: absent
