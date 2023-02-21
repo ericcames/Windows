@@ -1,0 +1,15 @@
+---
+- name: What is my computer information
+  hosts: all
+  gather_facts: no
+  
+  tasks:
+  
+  - name: Issue the powershell command to give the current computer info
+    register: powershellresult
+    ansible.builtin.win_shell: Get-ComputerInfo
+    
+    
+  - name: Printing powershellresult out
+    ansible.builtin.debug:
+      var: powershellresult
