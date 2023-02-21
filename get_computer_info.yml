@@ -5,7 +5,7 @@
   
   tasks:
   
-  - name: Issue the powershell command to give the current computer info
+  - name: Issue the powershell command to get the current computer info
     register: powershellresult
     ansible.builtin.win_shell: Get-ComputerInfo
     
