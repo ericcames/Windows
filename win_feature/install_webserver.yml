@@ -1,6 +1,6 @@
 ---
 - name: Web Server installation
-  hosts:
+  hosts: all
 
   tasks:
 
