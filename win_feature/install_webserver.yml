@@ -1,0 +1,10 @@
+---
+- name: Web Server installation
+  hosts:
+
+  tasks:
+
+  - name: Ensuring Web-Server feature is installed
+    win_feature:
+      name: Web-Server
+      state: present
