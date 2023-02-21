@@ -6,7 +6,7 @@
 
   - name: Getting a list of services on my machine
     register: servicelist
-    ansible.windows.win_shell:  Get-Service
+    win_shell:  Get-Service
 
   - name: Printing service list
     ansible.builtin.debug:
