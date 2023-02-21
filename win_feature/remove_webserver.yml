@@ -1,5 +1,5 @@
 ---
-- name: Web Server installation
+- name: Web Server removal
   hosts: all
 
   tasks:
