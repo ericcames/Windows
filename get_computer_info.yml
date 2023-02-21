@@ -9,7 +9,7 @@
   
   - name: Issue the powershell command to get the current computer info
     register: powershellresult
-    ansible.windows.win_shell: Get-ComputerInfo
+    ansible.builtin.win_shell: Get-ComputerInfo
     
     
   - name: Printing powershellresult out
