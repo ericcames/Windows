@@ -50,7 +50,6 @@
           var: my_vpc.vpc.id
 
       - name: "create security group {{ ec2_security_group_name }}"
-        register: my_security_group
         amazon.aws.ec2_group:
           name: "{{ ec2_security_group_name }}"
           description: Security group with rule descriptions created by Ansible
@@ -84,6 +83,7 @@
         tags:
           - createsecgrp
           - onlyvpc
+        register: my_security_group
 
       - name: "Create {{ ec2_vpc_subnet_name }} subnet"
         tags:
