@@ -1,0 +1,64 @@
+---
+- name: This is a play within a playbook
+  hosts: "{{ my_server }}"
+  vars:
+    iis_sites:
+      - name: 'Ansible Daily Demo'
+        port: '80'
+        path: 'C:\websites\dailydemo'
+    iis_test_message: "Hello World!  My test IIS Server"
+    username: Administrator
+    password: "{{ my_secret }}"
+
+  tasks:
+
+    - name: Install IIS Webserver
+      ansible.builtin.win_feature:
+        name: Web-Server
+        state: present
+
+    - name: Create site directory structure
+      with_items: "{{ iis_sites }}"
+      ansible.builtin.win_file:
+        path: "{{ item.path }}"
+        state: directory
+
+    - name: Create IIS site
+      with_items: "{{ iis_sites }}"
+      notify: restart iis service
+      ansible.builtin.win_iis_website:
+        name: "{{ item.name }}"
+        state: started
+        port: "{{ item.port }}"
+        physical_path: "{{ item.path }}"
+      
+    - name: Open port for site on the firewall
+      with_items: "{{ iis_sites }}"
+      ansible.builtin.win_firewall_rule:
+        name: "iisport{{ item.port }}"
+        enable: yes
+        state: present
+        localport: "{{ item.port }}"
+        action: Allow
+        direction: In
+        protocol: Tcp
+      
+    - name: Template simple web site to iis_site_path as index.html
+      with_items: "{{ iis_sites }}"
+      ansible.builtin.win_template:
+        src: 'index.html.j2'
+        dest: '{{ item.path }}\index.html'
+      
+    - name: Show website addresses
+      loop:
+        - http://{{ ansible_host }}
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      
+  handlers:
+
+    - name: restart iis service
+      ansible.builtin.win_service:
+        name: W3Svc
+        state: restarted
+        start_mode: auto
