@@ -9,6 +9,10 @@
     iis_test_message: "Hello World!  My test IIS Server"
     username: Administrator
     password: "{{ my_secret }}"
+    ansible_connection: winrm
+    ansible_winrm_transport: credssp
+    ansible_winrm_server_cert_validation: ignore
+    ansible_port: 5986
 
   tasks:
 
