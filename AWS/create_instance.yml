@@ -46,7 +46,6 @@
         name: "Windows Web Server"
         region: "{{region}}"
         key_name: "zigfreed-ssh-key"
-        count: "{{count}}"
         vpc_subnet_id: "{{vpc_subnet_id}}"
         instance_type: "{{instance_type}}"
         security_group: "{{ec2_security_group_name}}"
@@ -56,7 +55,7 @@
         tags:
           Environment: Web Demo
           AlwaysUp: "{{alwaysup}}"
-          Createdby: Ansible Tower
+          Createdby: Ansible Controller
           Contact: "{{my_email_address}}"
           DeletebBy: "{{ec2_ansible_group}}"
 
