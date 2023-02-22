@@ -4,3 +4,6 @@ collections:
   - name: chocolatey.chocolatey
   - name: community.windows
   - name: amazon.aws
+  - name: ansible.posix
+  - name: community.aws
+  - name: servicenow.itsm

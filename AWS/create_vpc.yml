@@ -50,9 +50,6 @@
           var: my_vpc.vpc.id
 
       - name: "create security group {{ ec2_security_group_name }}"
-        tags:
-          - createsecgrp
-          - onlyvpc
         register: my_security_group
         amazon.aws.ec2_group:
           name: "{{ ec2_security_group_name }}"
@@ -84,6 +81,9 @@
             ports: 3389
             cidr_ip: 0.0.0.0/0
             rule_desc: allow all on port 3389
+        tags:
+          - createsecgrp
+          - onlyvpc
 
       - name: "Create {{ ec2_vpc_subnet_name }} subnet"
         tags:
