@@ -34,4 +34,4 @@
 
     - name: "Printing the admin password: {{admin_passwd}}"
       ansible.builtin.debug:
-        var: "{{admin_passwd}}"
+        msg: "{{admin_passwd}}"
