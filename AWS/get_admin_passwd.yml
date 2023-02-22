@@ -42,3 +42,7 @@
       ansible.builtin.set_stats:
         data:
           my_secret: "{{ admin_passwd.win_password }}"
+
+    - name: Printing the public dns name
+      ansible.builtin.debug:
+        msg:  "{{ ec2_instance_info.instances[0].public_dns_name }}"
