@@ -43,9 +43,10 @@
 
     - name: Creating {{count}} AWS VMs in {{region}}
       amazon.aws.ec2_instance:
-        name: "Web Server"
+        name: "Windows Web Server"
         region: "{{region}}"
         key_name: "zigfreed-ssh-key"
+        count: "{{count}}"
         vpc_subnet_id: "{{vpc_subnet_id}}"
         instance_type: "{{instance_type}}"
         security_group: "{{ec2_security_group_name}}"
