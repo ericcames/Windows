@@ -46,3 +46,8 @@
     - name: Printing the public dns name
       ansible.builtin.debug:
         msg:  "{{ instance_info.instances[0].public_dns_name }}"
+
+    - name: Capture public dns name
+      ansible.builtin.set_stats:
+        data:
+          my_server: "{{ instance_info.instances[0].public_dns_name }}"
