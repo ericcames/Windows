@@ -17,10 +17,10 @@
            
       # Gather the start time to use in a later playbook
       - name: Record the vpc start time 
-        ansible.builtin.command:
-          cmd: "date '+%H:%M:%S'"
         delegate_to: 127.0.0.1
         register: vpc_create_time_pre
+        ansible.builtin.command:
+          cmd: "date '+%H:%M:%S'"
 
       # Make the start time available to other playbooks
       - name: Capture the create vpc_create_time
@@ -29,6 +29,7 @@
             vpc_create_time: "{{ vpc_create_time_pre.stdout }}"
       
       - name: "Create VPC {{ vpc_name }}_{{user_name}} in {{ region }}"
+        register: my_vpc
         amazon.aws.ec2_vpc_net:
           name: "{{ vpc_name }}_{{user_name}}"
           cidr_block: "{{ vpc_cidr }}"
@@ -42,13 +43,16 @@
             Createdby: Ansible Controller
             Contact: "{{my_email_address}}"
             DeletebBy: "{{deleteby}}"
-        register: my_vpc
-
+        
       - name: "Display my_vpc.vpc.id info for {{vpc_name}}"
         ansible.builtin.debug:
           var: my_vpc.vpc.id
 
       - name: "create security group {{ ec2_security_group_name }}"
+        tags:
+          - createsecgrp
+          - onlyvpc
+        register: my_security_group
         amazon.aws.ec2_security_group:
           name: "{{ ec2_security_group_name }}"
           description: Security group with rule descriptions created by Ansible
@@ -80,12 +84,11 @@
             cidr_ip: 0.0.0.0/0
             rule_desc: allow all on port 3389
 
-        tags:
-          - createsecgrp
-          - onlyvpc
-        register: my_security_group
-
       - name: "Create {{ ec2_vpc_subnet_name }} subnet"
+        tags:
+          - createsubnet
+          - onlyvpc
+        register: my_vpc_subnet
         amazon.aws.ec2_vpc_subnet:
           state: present
           vpc_id: "{{ my_vpc.vpc.id }}"
@@ -99,12 +102,12 @@
             Createdby: Ansible Controller
             Contact: "{{ my_email_address }}"
             DeleteBy: "{{deleteby}}"
-        tags:
-          - createsubnet
-          - onlyvpc
-        register: my_vpc_subnet
-
+        
       - name: "Create IGW {{ ec2_igw_name }} for {{ vpc_name }}_{{user_name}}"
+        tags:
+          - createigw
+          - onlyvpc
+        register: my_igw
         amazon.aws.ec2_vpc_igw:
           vpc_id: "{{ my_vpc.vpc.id }}"
           region: "{{ region }}"
@@ -115,12 +118,12 @@
             Createdby: Ansible Tower
             Contact: "{{my_email_address}}"
             DeletebBy: "{{deleteby}}"
-        tags:
-          - createigw
-          - onlyvpc
-        register: my_igw
-
+        
       - name: Create Internet route Table "{{ec2_rt_name}}"
+        tags:
+          - creatert
+          - onlyvpc
+        register: my_route_table
         amazon.aws.ec2_vpc_route_table:
           vpc_id: "{{ my_vpc.vpc.id }}"
           region: "{{ region }}"
@@ -138,7 +141,3 @@
           routes:
             - dest: 0.0.0.0/0
               gateway_id: "{{ my_igw.gateway_id }}"
-        tags:
-          - creatert
-          - onlyvpc
-        register: my_route_table
