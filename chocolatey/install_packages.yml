@@ -16,6 +16,7 @@
       chocolatey.chocolatey.win_chocolatey:
         name: "{{ item.name }}"
         version: "{{ item.version }}"
+        state: present
 
     - name: Check python version
       register: check_python_version
