@@ -21,6 +21,8 @@
 
       - name: Get an AAP API Token and store it as new_token
         register: new_token
+        no_log: true
+        ignore_errors: true
         ansible.builtin.uri:
           url: "https://{{ controller_url }}/api/v2/tokens/"
           method: POST
