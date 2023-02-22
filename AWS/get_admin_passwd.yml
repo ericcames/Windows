@@ -38,6 +38,7 @@
 
     # Make the admin password available to other playbooks
     - name: Capture the admin password
+      no_log: true
       ansible.builtin.set_stats:
         data:
           my_secret: "{{ admin_passwd.win_password }}"
