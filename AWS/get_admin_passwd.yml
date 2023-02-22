@@ -32,6 +32,6 @@
         wait: true
         wait_timeout: 45
 
-    - name: "Printing the admin password: {{admin_passwd}}"
+    - name: "Printing the admin password: {{admin_passwd.win_password}}"
       ansible.builtin.debug:
-        msg: "{{admin_passwd}}"
+        msg: "{{admin_passwd.win_password}}"
