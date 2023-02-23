@@ -34,7 +34,7 @@
         name: "{{ item.name }}"
         state: started
         port: "{{ item.port }}"
-        physical_path: "{{ item.path }}"
+        #physical_path: "{{ item.path }}"
       
     - name: Open port for site on the firewall
       with_items: "{{ iis_sites }}"
