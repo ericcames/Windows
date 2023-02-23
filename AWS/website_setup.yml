@@ -61,7 +61,7 @@
 
     - name: Copy a single file
       with_items: "{{ iis_sites }}"
-      ansible.windows.win_copy:
+      ansible.builtin.win_copy:
         src: images/aap.png
         dest: "{{ item.path }}/aap.png"
       
