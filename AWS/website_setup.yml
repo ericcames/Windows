@@ -1,7 +1,7 @@
 ---
 - name: Build our custom website
   hosts: "{{ my_server }}"
-  gather_facts: yes
+  gather_facts: no
   vars:
     iis_sites:
       - name: 'AnsibleDemo'
@@ -58,6 +58,12 @@
       ansible.builtin.win_template:
         src: 'index.html.j2'
         dest: '{{ item.path }}\index.html'
+
+    - name: Copy a single file
+      with_items: "{{ iis_sites }}"
+      ansible.windows.win_copy:
+        src: images/aap.png
+        dest: "{{ item.path }}/aap.png"
       
     - name: Show website addresses
       loop:
