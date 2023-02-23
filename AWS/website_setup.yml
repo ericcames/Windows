@@ -24,7 +24,7 @@
     
     - name: delete default IIS website
       ansible.builtin.win_iis_website:
-        name: "Default Web Site"
+        name: "AnsibleDemo"
         state: absent
 
     - name: Create site directory structure
@@ -61,7 +61,7 @@
       
     - name: Show website addresses
       loop:
-        - http://{{ ansible_host }}
+        - http://{{ my_server }}
       ansible.builtin.debug:
         msg: "{{ item }}"
       
