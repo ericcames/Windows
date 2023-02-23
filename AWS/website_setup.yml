@@ -23,19 +23,17 @@
         state: present
 
     - name: Create site directory structure
-      with_items: "{{ iis_sites }}"
       ansible.builtin.win_file:
-        path: "{{ item.path }}"
+        path: 'C:\sites\dailydemo'
         state: directory
 
     - name: Create IIS site
-      with_items: "{{ iis_sites }}"
       notify: restart iis service
       ansible.builtin.win_iis_website:
-        name: "{{ item.name }}"
+        name: 'AnsibleDemo'
         state: started
-        port: "{{ item.port }}"
-        physical_path: "{{ item.path }}"
+        port: 80
+        physical_path: 'C:\sites\dailydemo'
       
     - name: Open port for site on the firewall
       with_items: "{{ iis_sites }}"
