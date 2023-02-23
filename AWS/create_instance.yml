@@ -7,6 +7,7 @@
        ec2_security_group_name: "{{vpc_name}}_SECGRP"
        ec2_ansible_group: "{{user_name}}"
        my_email_address: "{{user_name}}@redhat.com"
+       aws_vm_name: "my_windows_server"
 
     tasks:
 
@@ -58,6 +59,9 @@
           Createdby: Ansible Controller
           Contact: "{{my_email_address}}"
           DeletebBy: "{{ec2_ansible_group}}"
+          info: "This instance was built by Red Hat Product Demos"
+          Name: "{{ aws_vm_name }}"
+        user_data: "{{ lookup('template', aws_userdata_template+'.j2', template_vars=dict(aws_vm_name=vm_name)) }}"
 
     - name: Pausing for 1 minutes to allow the machine to come up
       ansible.builtin.pause:
