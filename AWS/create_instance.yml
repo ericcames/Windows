@@ -43,6 +43,7 @@
         msg: "{{vpc_subnet_id}}"
 
     - name: Creating {{count}} AWS VMs in {{region}}
+      register: instance
       amazon.aws.ec2_instance:
         name: "Windows Web Server"
         region: "{{region}}"
@@ -61,7 +62,8 @@
           DeletebBy: "{{ec2_ansible_group}}"
           info: "This instance was built by the Sales Team"
         user_data: "{{ lookup('file', 'scripts/aws_userdata') }}"
+        wait: true
 
-    - name: Pausing for 1 minutes to allow the machine to come up
-      ansible.builtin.pause:
-        minutes: 2
+    - name: Show Subnet_id
+      ansible.builtin.debug:
+        msg: "{{ instance }}"
