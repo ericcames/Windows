@@ -83,6 +83,10 @@
             ports: 3389
             cidr_ip: 0.0.0.0/0
             rule_desc: allow all on port 3389
+          - proto: tcp
+            ports: 5986
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 3389
 
       - name: "Create {{ ec2_vpc_subnet_name }} subnet"
         tags:
