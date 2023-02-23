@@ -22,11 +22,11 @@
         name: Web-Server
         state: present
 
-    #- name: Create site directory structure
-    #  with_items: "{{ iis_sites }}"
-    #  ansible.builtin.win_file:
-    #    path: "{{ item.path }}"
-    #    state: directory
+    - name: Create site directory structure
+      with_items: "{{ iis_sites }}"
+      ansible.builtin.win_file:
+        path: "{{ item.path }}"
+        state: directory
 
     - name: Create IIS site
       with_items: "{{ iis_sites }}"
