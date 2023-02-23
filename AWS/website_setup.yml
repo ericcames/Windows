@@ -1,10 +1,10 @@
 ---
-- name: This is a play within a playbook
+- name: Build our custom website
   hosts: "{{ my_server }}"
   gather_facts: no
   vars:
     iis_sites:
-      - name: 'Ansible Daily Demo'
+      - name: 'Ansible'
         port: '80'
         path: 'C:\sites\dailydemo'
     iis_test_message: "Hello World!  My test IIS Server"
