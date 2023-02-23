@@ -21,6 +21,11 @@
       ansible.builtin.win_feature:
         name: Web-Server
         state: present
+    
+    - name: delete default IIS website
+      ansible.builtin.win_iis_website:
+        name: "Default Web Site"
+        state: absent
 
     - name: Create site directory structure
       with_items: "{{ iis_sites }}"
