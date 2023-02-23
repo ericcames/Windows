@@ -4,8 +4,8 @@
   gather_facts: no
   vars:
     iis_sites:
-      - name: 'Ansible'
-        port: '80'
+      - name: 'AnsibleDemo'
+        port: '8080'
         path: 'C:\sites\dailydemo'
     iis_test_message: "Hello World!  My test IIS Server"
     ansible_user: Administrator
@@ -23,17 +23,19 @@
         state: present
 
     - name: Create site directory structure
+      with_items: "{{ iis_sites }}"
       ansible.builtin.win_file:
-        path: 'C:\sites\dailydemo'
+        path: "{{ item.path }}"
         state: directory
 
     - name: Create IIS site
+      with_items: "{{ iis_sites }}"
       notify: restart iis service
       ansible.builtin.win_iis_website:
-        name: 'AnsibleDemo'
+        name: "{{ item.name }}"
         state: started
-        port: 80
-        physical_path: 'C:\sites\dailydemo'
+        port: "{{ item.port }}"
+        physical_path: "{{ item.path }}"
       
     - name: Open port for site on the firewall
       with_items: "{{ iis_sites }}"
