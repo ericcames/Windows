@@ -22,7 +22,7 @@
         name: Web-Server
         state: present
     
-    - name: delete default IIS website
+    - name: Delete default IIS website
       ansible.builtin.win_iis_website:
         name: "Default Web Site"
         state: absent
