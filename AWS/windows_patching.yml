@@ -1,0 +1,11 @@
+---
+- hosts: "{{ my_server}}"
+  name: This is my Windows patching playbook
+
+  tasks:
+
+    - name: Install Windows Updates
+      ansible.builtin.win_updates:
+        category_names: "{{ categories | default(omit) }}"
+        reboot: '{{ reboot_server | default(true) }}'
+        _wait: true
