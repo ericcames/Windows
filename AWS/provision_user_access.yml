@@ -17,6 +17,11 @@
         section: System Access
         key: PasswordComplexity
         value: 0
+
+    - name: Create the devops directory structure
+      ansible.builtin.win_file:
+        path: 'c:\Users\devops'
+        state: directory
     
     - name: Create local user accounts
       ansible.builtin.win_user:
