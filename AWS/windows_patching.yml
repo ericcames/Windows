@@ -12,6 +12,14 @@
 
   tasks:
 
+    - name: Debug my_server
+      ansible.builtin.debug:
+        var: my_server
+
+    - name: Debug my_secret
+      ansible.builtin.debug:
+        var: my_secret
+
     - name: Install Windows Updates
       ansible.builtin.win_updates:
         category_names: "{{ categories | default(omit) }}"
