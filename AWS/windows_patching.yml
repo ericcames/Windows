@@ -1,6 +1,13 @@
 ---
 - hosts: "{{ my_server}}"
   name: This is my Windows patching playbook
+  vars:
+    ansible_user: Administrator
+    ansible_password: "{{ my_secret }}"
+    ansible_connection: winrm
+    ansible_winrm_transport: credssp
+    ansible_winrm_server_cert_validation: ignore
+    ansible_port: 5986
 
   tasks:
 
