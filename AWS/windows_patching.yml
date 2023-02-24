@@ -12,11 +12,12 @@
 
   tasks:
 
-    - name: Debug my_server
+    - name: Dereference the my_server variable
       ansible.builtin.debug:
         var: my_server
 
-    - name: Debug my_secret
+    - name: Dereference the  my_secret variable
+      no_log: true
       ansible.builtin.debug:
         var: my_secret
 
