@@ -14,8 +14,8 @@
 
     - name: Relax password complexity requirements
       community.windows.win_security_policy:
-        section: Password Policy
-        key: Password must meet complexity requirements
+        section: System Access
+        key: PasswordComplexity
         value: Disabled
     
     - name: Create local user accounts
