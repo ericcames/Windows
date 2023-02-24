@@ -12,6 +12,12 @@
 
   tasks:
 
+    - name: Relax password complexity requirements
+      community.windows.win_security_policy:
+        section: Password Policy
+        key: Password must meet complexity requirements
+        value: Disabled
+    
     - name: Create local user accounts
       ansible.builtin.win_user:
         name: devops
