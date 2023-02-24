@@ -1,6 +1,6 @@
 ---
-- hosts: "{{ my_server}}"
-  name: This is my Windows patching playbook
+- name: This is my Windows patching playbook
+  hosts: "{{ my_server}}"
   vars:
     ansible_user: Administrator
     ansible_password: "{{ my_secret }}"
@@ -15,4 +15,3 @@
       ansible.builtin.win_updates:
         category_names: "{{ categories | default(omit) }}"
         reboot: '{{ reboot_server | default(true) }}'
-        _wait: true
