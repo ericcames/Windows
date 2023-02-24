@@ -1,0 +1,26 @@
+---
+- name: Update a catalog item in ServiceNow
+  hosts: localhost
+  gather_facts: no
+  
+  tasks: 
+  
+    - name: Retrieve catalog request sysid
+      register: result
+      servicenow.itsm.api_info:
+        resource: sc_req_item
+        sysparm_query: numberSTARTSWITH{{ ticket_number }}
+      
+    - name: Print the result
+      ansible.builtin.debug:
+        var: result
+
+    - name: Update a catalog work notes and state in ServiceNow
+      servicenow.itsm.api:
+        action: patch
+        resource: sc_req_item
+        sys_id: "{{ result.record[0].sys_id }}"
+        data:
+          request_state: "{{ request_state | default(omit) }}"
+          comments: "Ansible Daily Demo Windows server {{ my_server }} has been successfully provisioned.  Hoo-yah!"
+          state: 3
