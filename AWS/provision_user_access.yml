@@ -30,6 +30,7 @@
         state: present
         groups:
           - Users
+          - Remote Desktop Users
         home_directory: 'c:\Users\devops'
         password_never_expires: yes
         update_password: "on_create"
