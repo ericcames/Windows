@@ -1,0 +1,21 @@
+---
+- name: Provisioning user local access
+  hosts: "{{ my_server}}"
+  gather_facts: no
+  vars:
+    ansible_user: Administrator
+    ansible_password: "{{ my_secret }}"
+    ansible_connection: winrm
+    ansible_winrm_transport: credssp
+    ansible_winrm_server_cert_validation: ignore
+    ansible_port: 5986
+
+  tasks:
+
+    - name: Create local user accounts
+      ansible.builtin.win_user:
+        name: devops
+        password: "{{ devops_password }}"
+        state: present
+        groups:
+          - Users
