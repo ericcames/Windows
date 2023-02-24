@@ -25,3 +25,7 @@
         state: present
         groups:
           - Users
+        home_directory: c:\Users\devops
+        password_never_expires: yes
+        update_password: "on_create"
+        user_cannot_change_password: yes
