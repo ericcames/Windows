@@ -42,11 +42,11 @@
         data:
           my_secret: "{{ admin_passwd.win_password }}"
 
-    - name: Printing the public dns name
-      ansible.builtin.debug:
-        msg:  "{{ instance_info.instances[0].public_dns_name }}"
-
     - name: Capture public dns name
       ansible.builtin.set_stats:
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
+
+    - name: "Printing {{my_server }}"
+      ansible.builtin.debug:
+        var:  "{{ my_server }}"
