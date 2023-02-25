@@ -32,11 +32,11 @@
         wait: true
         wait_timeout: 45
 
-    - name: "Printing the admin password: {{ admin_passwd.win_password }}"
-      no_log: true
-      ignore_errors: true
-      ansible.builtin.debug:
-        msg: "{{ admin_passwd.win_password }}"
+    #- name: "Printing the admin password: {{ admin_passwd.win_password }}"
+    #  no_log: true
+    #  ignore_errors: true
+    #  ansible.builtin.debug:
+    #    msg: "{{ admin_passwd.win_password }}"
 
     # Make the admin password available to other playbooks
     - name: Capture the admin password
