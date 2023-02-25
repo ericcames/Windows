@@ -12,9 +12,9 @@
 
   tasks:
 
-    - name: Dereference the my_server variable
-      ansible.builtin.debug:
-        var: my_server
+    #- name: Dereference the my_server variable
+    #  ansible.builtin.debug:
+    #    var: my_server
 
     - name: Install Windows Updates
       ansible.builtin.win_updates:
