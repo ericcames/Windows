@@ -46,7 +46,3 @@
       ansible.builtin.set_stats:
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
-
-    - name: "Printing {{my_server }}"
-      ansible.builtin.debug:
-        var:  "{{ my_server }}"
