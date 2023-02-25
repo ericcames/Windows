@@ -16,11 +16,11 @@
       ansible.builtin.debug:
         var: my_server
 
-    - name: Dereference the  my_secret variable
-      no_log: true
-      ignore_errors: true
-      ansible.builtin.debug:
-        var: my_secret
+    #- name: Dereference the  my_secret variable
+    #  no_log: true
+    #  ignore_errors: true
+    #  ansible.builtin.debug:
+    #    var: my_secret
 
     - name: Install Windows Updates
       ansible.builtin.win_updates:
