@@ -68,6 +68,6 @@
       ansible.builtin.debug:
         msg: "{{ instance }}"
     
-    - name: Pause for 60 seconds to allow aws to spin things up
+    - name: Pause for 120 seconds to allow aws to spin things up
       ansible.builtin.pause:
         seconds: 120
