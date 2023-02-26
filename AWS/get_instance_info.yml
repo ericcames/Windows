@@ -47,6 +47,11 @@
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
 
+    - name: Create the host_vars for this servernam
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/host_vars/{{ instance_info.instances[0].public_dns_name }}"
+        state: directory
+
     - name: Foobar
       delegate_to: localhost
       ansible.builtin.copy:
