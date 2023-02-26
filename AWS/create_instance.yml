@@ -64,7 +64,7 @@
         user_data: "{{ lookup('file', 'scripts/aws_userdata') }}"
         wait: true
 
-    - name: Show Subnet_id
+    - name: The instance variable = {{ instance }}
       ansible.builtin.debug:
         msg: "{{ instance }}"
     
