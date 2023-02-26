@@ -57,6 +57,8 @@
         state: directory
 
     - name: Write password to the vault
+      no_log: true
+      ignore_errors: true
       ansible.builtin.copy:
         content: "{{ admin_passwd.win_password }}"
         dest: "{{ playbook_dir }}/host_vars/{{ my_server }}/vault"
