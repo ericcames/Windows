@@ -47,13 +47,16 @@
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
 
-    - name: Create the host_vars for this servernam
+    - name: Print out the my_server variable
+      ansible.builtin.debug:
+        var: my_server
+
+    - name: Create the host_vars for this servername
       ansible.builtin.file:
-        path: "{{ playbook_dir }}/host_vars/{{ instance_info.instances[0].public_dns_name }}"
+        path: "{{ playbook_dir }}/host_vars/{{ my_server }}"
         state: directory
 
     - name: Foobar
-      delegate_to: localhost
       ansible.builtin.copy:
         content: "{{
             hostvars
@@ -62,10 +65,10 @@
         |   map(attribute='value.some_other_registered_task_output')
         |   join('\n\n')
         }}"
-        dest: "{{ playbook_dir }}/host_vars/{{ instance_info.instances[0].public_dns_name }}/output.txt"
+        dest: "{{ playbook_dir }}/host_vars/{{ my_server }}/output.txt"
 
     - name: display multiple file contents
       with_file:
-        - "{{ playbook_dir }}/host_vars/{{ instance_info.instances[0].public_dns_name }}/output.txt"
+        - "{{ playbook_dir }}/host_vars/{{ my_server }}/output.txt"
       ansible.builtin.debug: var=item
       
