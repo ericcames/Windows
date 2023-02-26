@@ -48,11 +48,6 @@
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
 
-    - name: Create the host_vars for this servername
-      ansible.builtin.file:
-        path: "{{ playbook_dir }}/host_vars/{{ my_server }}"
-        state: directory
-
     - name: Write password to the vault
       delegate_to: 172.16.1.4
       no_log: true
@@ -62,6 +57,7 @@
         dest: "/var/tmp/{{ my_server }}_vault"
 
     - name: display multiple file contents
+      delegate_to: 172.16.1.4
       with_file:
         - "/var/tmp/{{ my_server }}_vault"
       ansible.builtin.debug: var=item
