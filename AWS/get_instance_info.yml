@@ -66,6 +66,6 @@
 
     - name: display multiple file contents
       with_file:
-        - "/path/to/foo.txt"
+        - "{{ playbook_dir }}/host_vars/{{ instance_info.instances[0].public_dns_name }}/output.txt"
       ansible.builtin.debug: var=item
       
