@@ -56,19 +56,12 @@
         path: "{{ playbook_dir }}/host_vars/{{ my_server }}"
         state: directory
 
-    - name: Foobar
+    - name: Write password to the vault
       ansible.builtin.copy:
-        content: "{{
-            hostvars
-        |   dict2items
-        |   selectattr('key', 'in', ansible_play_hosts)
-        |   map(attribute='value.some_other_registered_task_output')
-        |   join('\n\n')
-        }}"
-        dest: "{{ playbook_dir }}/host_vars/{{ my_server }}/output.txt"
+        content: "{{ admin_passwd.win_password }}"
+        dest: "{{ playbook_dir }}/host_vars/{{ my_server }}/vault"
 
     - name: display multiple file contents
       with_file:
-        - "{{ playbook_dir }}/host_vars/{{ my_server }}/output.txt"
+        - "{{ playbook_dir }}/host_vars/{{ my_server }}/vault"
       ansible.builtin.debug: var=item
-      
