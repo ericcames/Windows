@@ -6,7 +6,7 @@
     vars:
        region: ''
        servername: ''
-       vault_password: '/var/lib/awx/.ssh/vault_password'
+       vault_password: '/var/lib/awx/vault_password'
 
     tasks:
 
@@ -50,11 +50,9 @@
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
 
     - name: Write the Administrator password to the vault
-      delegate_to: 172.16.1.4
       ansible.builtin.shell:
         cmd: ansible-vault encrypt_string --vault-password-file "{{ vault_password }}" "{{ admin_passwd.win_password }}" --name 'my_vaulted_secret'
         chdir: /var/tmp
 
     - name: Read the contents of the vault
-      delegate_to: 172.16.1.4
       ansible.builtin.debug: var="/var/tmp/my_vaulted_secret" --vault-password-file "{{ vault_password }}"
