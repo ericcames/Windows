@@ -70,4 +70,4 @@
     
     - name: Pause for 60 seconds to allow aws to spin things up
       ansible.builtin.pause:
-        seconds: 60
+        seconds: 120
