@@ -46,3 +46,15 @@
       ansible.builtin.set_stats:
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
+
+    - name: Foobar
+      delegate_to: localhost
+      ansible.builtin.copy:
+        content: "{{
+            hostvars
+        |   dict2items
+        |   selectattr('key', 'in', ansible_play_hosts)
+        |   map(attribute='value.some_other_registered_task_output')
+        |   join('\n\n')
+        }}"
+        dest: "{{ playbook_dir }}/host_vars/{{ myserver }}/output.txt"
