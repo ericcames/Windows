@@ -49,16 +49,12 @@
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
 
-    - name: Write password to the vault
+    - name: Write the Administrator password to the vault
       delegate_to: 172.16.1.4
-      no_log: true
-      ignore_errors: true
-      ansible.builtin.copy:
-        content: "{{ admin_passwd.win_password }}"
-        dest: "/var/tmp/{{ my_server }}_vault"
+      ansible.builtin.shell:
+        cmd: ansible-vault encrypt_string --vault-password-file "{{ vault_password }}" "{{ admin_passwd.win_password }}" --name 'my_vaulted_secret'
+        chdir: /root/.ssh
 
-    - name: display multiple file contents
+    - name: Read the contents of the vault
       delegate_to: 172.16.1.4
-      with_file:
-        - "/var/tmp/{{ my_server }}_vault"
-      ansible.builtin.debug: var=item
+      ansible.builtin.debug: var="/root/.ssh/my_vaulted_secret" --vault-password-file "{{ vault_password }}"
