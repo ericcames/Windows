@@ -47,9 +47,9 @@
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
 
-    - name: Print out the my_server variable
-      ansible.builtin.debug:
-        var: my_server
+    - name: Make the my_server variable active in this playbook
+      ansible.builtin.set_fact:
+        my_server: "{{ instance_info.instances[0].public_dns_name }}"
 
     - name: Create the host_vars for this servername
       ansible.builtin.file:
