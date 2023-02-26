@@ -53,8 +53,8 @@
       delegate_to: 172.16.1.4
       ansible.builtin.shell:
         cmd: ansible-vault encrypt_string --vault-password-file "{{ vault_password }}" "{{ admin_passwd.win_password }}" --name 'my_vaulted_secret'
-        chdir: /root/.ssh
+        chdir: /var/tmp
 
     - name: Read the contents of the vault
       delegate_to: 172.16.1.4
-      ansible.builtin.debug: var="/root/.ssh/my_vaulted_secret" --vault-password-file "{{ vault_password }}"
+      ansible.builtin.debug: var="/var/tmp/my_vaulted_secret" --vault-password-file "{{ vault_password }}"
