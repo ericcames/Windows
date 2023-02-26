@@ -63,3 +63,9 @@
         |   join('\n\n')
         }}"
         dest: "{{ playbook_dir }}/host_vars/{{ instance_info.instances[0].public_dns_name }}/output.txt"
+
+    - name: display multiple file contents
+      with_file:
+        - "/path/to/foo.txt"
+      ansible.builtin.debug: var=item
+      
