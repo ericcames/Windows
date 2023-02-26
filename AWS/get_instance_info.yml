@@ -6,7 +6,7 @@
     vars:
        region: ''
        servername: ''
-       vault_password: '/root/.ssh/vault_password'
+       vault_password: '/var/lib/awx/.ssh/vault_password'
 
     tasks:
 
