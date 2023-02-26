@@ -57,4 +57,4 @@
         |   map(attribute='value.some_other_registered_task_output')
         |   join('\n\n')
         }}"
-        dest: "{{ playbook_dir }}/host_vars/{{ myserver }}/output.txt"
+        dest: "{{ playbook_dir }}/host_vars/{{ instance_info.instances[0].public_dns_name }}/output.txt"
