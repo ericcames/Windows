@@ -6,6 +6,7 @@
     vars:
        region: ''
        servername: ''
+       vault_password: '/root/.ssh/vault_password'
 
     tasks:
 
