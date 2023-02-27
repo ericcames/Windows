@@ -57,7 +57,7 @@
     #- name: Read the contents of the vault
     #  ansible.builtin.debug: var="/var/tmp/my_vaulted_secret" --vault-password-file "{{ vault_password }}"
 
-    - name: WTF
-      delegate_to: 172.16.1.4
-      ansible.builtin.shell:
-        cmd: whoami; pwd; uname -n
+    #- name: WTF
+    #  delegate_to: 172.16.1.4
+    #  ansible.builtin.shell:
+    #    cmd: whoami; pwd; uname -n
