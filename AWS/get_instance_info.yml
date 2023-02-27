@@ -59,4 +59,4 @@
 
     - name: WTF
       ansible.builtin.shell:
-        cmd: whoami; pwd; hostname
+        cmd: whoami; pwd
