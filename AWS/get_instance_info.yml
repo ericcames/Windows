@@ -60,4 +60,4 @@
     - name: WTF
       delegate_to: 127.0.0.1
       ansible.builtin.shell:
-        cmd: whoami; pwd; /bin/hostname
+        cmd: whoami; pwd; uname -n
