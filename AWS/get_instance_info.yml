@@ -6,6 +6,9 @@
     vars:
        region: ''
        servername: ''
+       controller_host: https://"{{ controller_url }}""
+       controller_password: "{{ controller_passwd }}"
+       controller_username: "{{ controller_user }}"
 
     tasks:
 
