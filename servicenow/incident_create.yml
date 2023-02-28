@@ -14,8 +14,8 @@
           password: "{{ password }}"
         state: new
         caller: "{{ caller_name }}"
-        short_description: "Ansible Automation Platform - Job ID: {{ my_job_id }} - Template: {{ my_job_template_name }}"
-        description: "Job ID: {{ my_job_id }} \n Template: {{ my_job_template_name }} \n Message: {{ my_error }}"
+        short_description: "Ansible Automation Platform - Job ID: {{ my_job_id }} - Template named: {{ my_job_template_name }}"
+        description: "Job ID: {{ my_job_id }} \n Template named: {{ my_job_template_name }} \n Message: {{ my_error }}"
         impact: low
         urgency: low
         other:
