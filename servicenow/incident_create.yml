@@ -8,9 +8,9 @@
     - name: Create the incident ticket
       servicenow.itsm.incident:
         instance:
-          host: '{{ servicenow_url }}'
-          username: '{{ username }}'
-          password: '{{ password }}'
+          host: "https://{{ servicenow_url }}"
+          username: "{{ username }}"
+          password: "{{ password }}"
         state: new
         caller: "{{ caller_name }}"
         short_description: Ansible Automation Platform playbook has errored out
