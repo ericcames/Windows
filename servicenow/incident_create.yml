@@ -25,7 +25,7 @@
       ansible.builtin.debug:
         var: incident_info
 
-    #- name: Capture the Incident Ticket number 
-    #  ansible.builtin.set_stats:
-    #    data:
-    #      incident_ticket: "{{ incident.number }}"
+    - name: Capture the Incident Ticket number 
+      ansible.builtin.set_stats:
+        data:
+          incident_ticket: "{{ incident_info.record.number }}"
