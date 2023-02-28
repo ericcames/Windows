@@ -6,7 +6,7 @@
   tasks:
 
     - name: Create the incident ticket
-      register: record
+      register: incident_info
       servicenow.itsm.incident:
         instance:
           host: "https://{{ servicenow_url }}"
@@ -21,7 +21,11 @@
         other:
           assignment_group: "Ansible West Tigers"
 
-    - name: Capture the Incident Ticket number 
-      ansible.builtin.set_stats:
-        data:
-          incident_ticket: "{{ record.number }}"
+    - name: Print out the Incident info
+      ansible.builtin.debug:
+        var: incident_info
+
+    #- name: Capture the Incident Ticket number 
+    #  ansible.builtin.set_stats:
+    #    data:
+    #      incident_ticket: "{{ incident.number }}"
