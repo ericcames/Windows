@@ -77,14 +77,24 @@
 
         rescue:
 
-          - name: Print out the error message
-            ansible.builtin.debug:
-              msg: "{{ ansible_failed_result.msg }}"
+          - name: Capture the error message
+            register: my_error
+            ansible.builtin.set_stats:
+              data:
+                my_error: "{{ ansible_failed_result.msg }}"
 
-          - name: Print out the job id
-            ansible.builtin.debug:
-              msg: "{{ tower_job_id }}, {{ tower_job_template_name }}"
+          - name: Capture the Job ID
+            register: my_job_id
+            ansible.builtin.set_stats:
+              data:
+                my_job_id: "{{ tower_job_id }}"
 
-          - name: Example using fail and when together
+          - name: Capture the Job Template name
+            register: my_job_template_name
+            ansible.builtin.set_stats:
+              data:
+                my_job_template_name: "{{ tower_job_template_name }}"
+
+          - name: Fail the job even though the rescue worked
             ansible.builtin.fail:
-              msg: The system may not be provisioned according to the CMDB status
+              msg: failing so we create the incident ticket
