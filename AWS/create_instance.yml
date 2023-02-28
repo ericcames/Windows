@@ -67,10 +67,6 @@
     - name: The instance variable = {{ instance }}
       ansible.builtin.debug:
         msg: "{{ instance }}"
-
-    - name: The instance variable = "{{ ansible_failed_result[''stdout''] }}"
-      ansible.builtin.debug:
-        msg: "{{ ansible_failed_result[''stdout''] }}"
     
     - name: Pause for 120 seconds to allow aws to spin things up
       ansible.builtin.pause:
