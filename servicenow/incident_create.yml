@@ -17,6 +17,8 @@
         description: "foobar"
         impact: low
         urgency: low
+        other:
+          assignment_group: "Ansible West Tigers"
 
     - name: Capture the Incident Ticket number 
       ansible.builtin.set_stats:
