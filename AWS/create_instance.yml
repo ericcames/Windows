@@ -79,4 +79,8 @@
 
           - name: Uh-Oh things are not going well if we are here
             ansible.builtin.debug:
-              var: "{{ ansible_failed_result }}"
+              msg: "{{ ansible_failed_task }}"
+
+          - name: Example using fail and when together
+            ansible.builtin.fail:
+            msg: The system may not be provisioned according to the CMDB status
