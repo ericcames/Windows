@@ -11,67 +11,72 @@
 
     tasks:
 
-    # Gather the start time to use in a later playbook
-    - name: Record the machine_create_time
-      delegate_to: 127.0.0.1
-      register: machine_create_time_pre
-      ansible.builtin.command:
-        cmd: "date '+%H:%M:%S'"
-      
-    # Make the start time available to other playbooks
-    - name: Capture machine instance start time
-      ansible.builtin.set_stats:
-        data:
-          machine_create_time: "{{ machine_create_time_pre.stdout }}"
+      - name: Handle the error
+        block:
 
-    - name: If vpc_subnet_id doesn't exist lookup by {{subnet_name}}
-      when: vpc_subnet_id is undefined
-      block:
-      - name: Looking Up Subnet_id for {{subnet_name}} if vpc_subnet_id doesn't exist
-        register: subnet_id
-        amazon.aws.ec2_vpc_subnet_info:
-          region: "{{region}}"
-          filters:
-            "tag:Name": "{{subnet_name}}"
+          # Gather the start time to use in a later playbook
+          - name: Record the machine_create_time
+            delegate_to: 127.0.0.1
+            register: machine_create_time_pre
+            ansible.builtin.command:
+              cmd: "date '+%H:%M:%S'"
+      
+          # Make the start time available to other playbooks
+          - name: Capture machine instance start time
+            ansible.builtin.set_stats:
+              data:
+                machine_create_time: "{{ machine_create_time_pre.stdout }}"
+
+          - name: If vpc_subnet_id doesn't exist lookup by {{subnet_name}}
+            when: vpc_subnet_id is undefined
+            block:
+          - name: Looking Up Subnet_id for {{subnet_name}} if vpc_subnet_id doesn't exist
+            register: subnet_id
+            amazon.aws.ec2_vpc_subnet_info:
+              region: "{{region}}"
+              filters:
+              "tag:Name": "{{subnet_name}}"
         
-      - name: Setting vpc_subnet_id based on Lookup of {{subnet_name}}
-        ansible.builtin.set_fact:
-          vpc_subnet_id: "{{subnet_id.subnets[0].id}}"
+          - name: Setting vpc_subnet_id based on Lookup of {{subnet_name}}
+            ansible.builtin.set_fact:
+              vpc_subnet_id: "{{subnet_id.subnets[0].id}}"
       
-    - name: Show Subnet_id
-      ansible.builtin.debug:
-        msg: "{{vpc_subnet_id}}"
+          - name: Show Subnet_id
+            ansible.builtin.debug:
+              msg: "{{vpc_subnet_id}}"
 
-    - name: Creating {{count}} AWS VMs in {{region}}
-      register: instance
-      amazon.aws.ec2_instance:
-        name: "Windows Web Server"
-        region: "{{region}}"
-        key_name: "zigfreed-ssh-key"
-        vpc_subnet_id: "{{vpc_subnet_id}}"
-        instance_type: "{{instance_type}}"
-        security_group: "{{ec2_security_group_name}}"
-        network:
-          assign_public_ip: "{{assign_public_ip}}"
-        image_id: "{{image}}"
-        tags:
-          Environment: Web Demo
-          AlwaysUp: "{{alwaysup}}"
-          Createdby: Ansible Controller
-          Contact: "{{my_email_address}}"
-          DeletebBy: "{{ec2_ansible_group}}"
-          info: "This instance was built by the Sales Team"
-        user_data: "{{ lookup('file', 'scripts/aws_userdata') }}"
-        wait: true
+          - name: Creating {{count}} AWS VMs in {{region}}
+            register: instance
+            amazon.aws.ec2_instance:
+              name: "Windows Web Server"
+              region: "{{region}}"
+              key_name: "zigfreed-ssh-key"
+              vpc_subnet_id: "{{vpc_subnet_id}}"
+              instance_type: "{{instance_type}}"
+              security_group: "{{ec2_security_group_name}}"
+              network:
+                assign_public_ip: "{{assign_public_ip}}"
+                image_id: "{{image}}"
+              tags:
+                Environment: Web Demo
+                AlwaysUp: "{{alwaysup}}"
+                Createdby: Ansible Controller
+                Contact: "{{my_email_address}}"
+                DeletebBy: "{{ec2_ansible_group}}"
+                info: "This instance was built by the Sales Team"
+                user_data: "{{ lookup('file', 'scripts/aws_userdata') }}"
+                wait: true
 
-    - name: The instance variable = {{ instance }}
-      ansible.builtin.debug:
-        msg: "{{ instance }}"
+          - name: The instance variable = {{ instance }}
+            ansible.builtin.debug:
+              msg: "{{ instance }}"
+   
+          - name: Pause for 120 seconds to allow aws to spin things up
+            ansible.builtin.pause:
+              seconds: 120
+        
+        rescue:
 
-    - name: The instance variable = "{{ ansible_failed_result[''stdout''] }}"
-      ansible.builtin.debug:
-        msg: "{{ ansible_failed_result[''stdout''] }}"
-    
-    - name: Pause for 120 seconds to allow aws to spin things up
-      ansible.builtin.pause:
-        seconds: 120
+          - name: The instance variable = "{{ ansible_failed_result[''stdout''] }}"
+            ansible.builtin.debug:
+              msg: "{{ ansible_failed_result[''stdout''] }}"
