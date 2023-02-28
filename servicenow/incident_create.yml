@@ -6,6 +6,7 @@
   tasks:
 
     - name: Create the incident ticket
+      register: record
       servicenow.itsm.incident:
         instance:
           host: "https://{{ servicenow_url }}"
