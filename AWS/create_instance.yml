@@ -83,7 +83,7 @@
 
           - name: Print out the job id
             ansible.builtin.debug:
-              msg: "{{ tower_job_id }}"
+              msg: "{{ tower_job_id }}, {{ tower_job_template_name }}"
 
           - name: Example using fail and when together
             ansible.builtin.fail:
