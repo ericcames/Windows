@@ -79,7 +79,7 @@
 
           - name: Uh-Oh things are not going well if we are here
             ansible.builtin.debug:
-              msg: "{{ ansible_failed_result.msg.msg }}"
+              msg: "{{ ansible_failed_result.msg }}"
 
           - name: Example using fail and when together
             ansible.builtin.fail:
