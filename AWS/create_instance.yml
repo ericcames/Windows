@@ -79,4 +79,4 @@
 
           - name: Uh-Oh things are not going well if we are here
             ansible.builtin.debug:
-              var: '"{{ ansible_failed_result[''module_stderr''] }}"'
+              var: "{{ msg }}"
