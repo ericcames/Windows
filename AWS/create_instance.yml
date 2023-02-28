@@ -79,4 +79,4 @@
 
           - name: Uh-Oh things are not going well if we are here
             ansible.builtin.debug:
-              msg: '"{{ inventory_hostname }}","{{ tower_job_id }}","{{ ansible_failed_task[''name''] }}","{{ ansible_failed_result[''module_stderr''] }}","{{ ansible_failed_result[''stdout''] }}"'
+              var: '"{{ ansible_failed_result[''module_stderr''] }}"'
