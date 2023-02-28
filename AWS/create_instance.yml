@@ -83,4 +83,4 @@
 
           - name: Example using fail and when together
             ansible.builtin.fail:
-            msg: The system may not be provisioned according to the CMDB status
+              msg: The system may not be provisioned according to the CMDB status
