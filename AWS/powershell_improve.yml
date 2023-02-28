@@ -1,0 +1,20 @@
+---
+- name: Improve powershell perfomance
+  hosts: "{{ my_server }}"
+  gather_facts: no
+  vars:
+    ansible_connection: winrm
+    ansible_winrm_transport: credssp
+    ansible_winrm_server_cert_validation: ignore
+    ansible_port: 5986
+
+  tasks:
+
+    - name: Copy the powershell performance script into place
+      ansible.builtin.win_copy:
+        src: scripts/powershell_performance
+        dest: 'c:\users\devops\powershell_performance'
+    
+    - name: Run basic PowerShell script
+      ansible.builtin.win_powershell:
+        script: 'c:\users\devops\powershell_performance'
