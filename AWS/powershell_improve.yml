@@ -16,5 +16,5 @@
         dest: 'c:\users\devops\powershell_performance'
     
     - name: Run basic PowerShell script
-      ansible.builtin.win_powershell:
+      ansible.windows.win_powershell:
         script: 'c:\users\devops\powershell_performance'
