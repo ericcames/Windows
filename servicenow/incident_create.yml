@@ -1,7 +1,7 @@
 ---
 - name: Creating an Incident Ticket because something went wrong
   hosts: localhost
-  gather_facts: yes
+  gather_facts: no
   
   tasks:
 
