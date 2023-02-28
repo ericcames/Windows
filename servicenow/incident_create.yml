@@ -1,0 +1,19 @@
+---
+- name: Creating an Incident Ticket becuase something went wrong
+  hosts: localhost
+  gather_facts: no
+  
+  tasks:
+
+    - name: Create the incident ticket
+      servicenow.itsm.incident:
+        instance:
+          host: "https://{{ servicenow_url}}"
+          username: "{{ username }}"
+          password: "{{ password }}"
+        state: new
+        caller: "{{ caller_name }}"
+        short_description: Ansible Automation Platform playbook has errored out
+        description: "{{ msg }}"
+        impact: low
+        urgency: low
