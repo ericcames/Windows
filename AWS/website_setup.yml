@@ -8,8 +8,6 @@
         port: '80'
         path: 'C:\sites\dailydemo'
     iis_test_message: "Hello World!  My test IIS Server"
-    #ansible_user: Administrator
-    #ansible_password: "{{ my_secret }}"
     ansible_connection: winrm
     ansible_winrm_transport: credssp
     ansible_winrm_server_cert_validation: ignore
