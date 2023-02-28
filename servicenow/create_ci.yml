@@ -17,7 +17,7 @@
         serial_number: ECE-164-E10834-NO
         asset_tag: P1000613
         sys_class_name: cmdb_ci_win_server
-        assigned_to: some.user
+        assigned_to: "{{ username }}"
         environment: production
         category: Hardware
         operational_status: operational
