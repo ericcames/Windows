@@ -23,3 +23,7 @@
         operational_status: operational
         other:
           model_number: AWS
+
+    - name: Print shit out
+      ansible.builtin.debug:
+        var: server_info
