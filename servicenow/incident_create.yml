@@ -1,5 +1,5 @@
 ---
-- name: Creating an Incident Ticket becuase something went wrong
+- name: Creating an Incident Ticket because something went wrong
   hosts: localhost
   gather_facts: no
   
@@ -14,6 +14,6 @@
         state: new
         caller: "{{ caller_name }}"
         short_description: Ansible Automation Platform playbook has errored out
-        description: "{{ msg }}"
+        description: "foobar"
         impact: low
         urgency: low
