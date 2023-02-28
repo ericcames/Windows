@@ -6,7 +6,6 @@
     vars:
        region: ''
        servername: ''
-       vault_password: '/var/lib/awx/.ssh/vault_password'
 
     tasks:
 
@@ -35,29 +34,28 @@
         wait: true
         wait_timeout: 45
 
+    - name: Update the Windows AWS machine credential
+      awx.awx.credential:
+        name: Windows AWS
+        organization: Ames Company
+        description: Used in the Windows AWS Demo
+        state: present
+        update_secrets: true
+        credential_type: Machine
+        inputs:
+          username: Administrator
+          password: "{{ admin_passwd.win_password }}"
+
     # Make the admin password available to other playbooks
-    - name: Capture the admin password
-      no_log: true
-      ignore_errors: true
-      ansible.builtin.set_stats:
-        data:
-          my_secret: "{{ admin_passwd.win_password }}"
+    #- name: Capture the admin password
+    #  no_log: true
+    #  ignore_errors: true
+    #  ansible.builtin.set_stats:
+    #    data:
+    #      my_secret: "{{ admin_passwd.win_password }}"
 
     - name: Capture public dns name
       register: my_server
       ansible.builtin.set_stats:
         data:
           my_server: "{{ instance_info.instances[0].public_dns_name }}"
-
-    #- name: Write the Administrator password to the vault
-    #  ansible.builtin.shell:
-    #    cmd: ansible-vault encrypt_string --vault-password-file "{{ vault_password }}" "{{ admin_passwd.win_password }}" --name 'my_vaulted_secret'
-    #    chdir: /var/tmp
-
-    #- name: Read the contents of the vault
-    #  ansible.builtin.debug: var="/var/tmp/my_vaulted_secret" --vault-password-file "{{ vault_password }}"
-
-    #- name: WTF
-    #  delegate_to: 172.16.1.4
-    #  ansible.builtin.shell:
-    #    cmd: whoami; pwd; uname -n

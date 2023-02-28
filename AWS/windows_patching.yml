@@ -3,8 +3,8 @@
   hosts: "{{ my_server}}"
   gather_facts: no
   vars:
-    ansible_user: Administrator
-    ansible_password: "{{ my_secret }}"
+    #ansible_user: Administrator
+    #ansible_password: "{{ my_secret }}"
     ansible_connection: winrm
     ansible_winrm_transport: credssp
     ansible_winrm_server_cert_validation: ignore
