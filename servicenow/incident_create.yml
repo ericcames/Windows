@@ -17,3 +17,8 @@
         description: "foobar"
         impact: low
         urgency: low
+
+    - name: Capture the Incident Ticket number 
+      ansible.builtin.set_stats:
+        data:
+          incident_ticket: "{{ record.number }}"
