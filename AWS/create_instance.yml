@@ -77,9 +77,13 @@
 
         rescue:
 
-          - name: Uh-Oh things are not going well if we are here
+          - name: Print out the error message
             ansible.builtin.debug:
               msg: "{{ ansible_failed_result.msg }}"
+
+          - name: Print out the job id
+            ansible.builtin.debug:
+              msg: "{{ tower_job_id }}"
 
           - name: Example using fail and when together
             ansible.builtin.fail:
