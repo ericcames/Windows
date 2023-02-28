@@ -8,9 +8,9 @@
     - name: Create a Configuration Item
       register: server_info
       servicenow.itsm.configuration_item:
-        username: "{{ username }}"
-        password: "{{ password }}"
-        host: "https://{{ controller_url }}"
+        username: "{{ servicenow_username }}"
+        password: "{{ servicenow_password }}"
+        host: "https://{{ servicenow_url }}"
         name: "{{ my_server }}"
         state: present
         short_description: Windows Server 2022 - AWS - Demo Web Server

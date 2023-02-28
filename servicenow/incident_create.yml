@@ -10,8 +10,8 @@
       servicenow.itsm.incident:
         instance:
           host: "https://{{ servicenow_url }}"
-          username: "{{ username }}"
-          password: "{{ password }}"
+          username: "{{ servicenow_username }}"
+          password: "{{ servicenow_password }}"
         state: new
         caller: "{{ caller_name }}"
         short_description: "Ansible Automation Platform - Job ID: {{ my_job_id }} - Template named: {{ my_job_template_name }} - failure see description."
