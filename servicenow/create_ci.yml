@@ -1,0 +1,25 @@
+---
+- name: Creating a Configuration Item (CI) in the CMDB
+  hosts: localhost
+  gather_facts: no
+  
+  tasks:
+
+    - name: Create a Configuration Item
+      register: server_info
+      servicenow.itsm.configuration_item:
+        username: "{{ username }}"
+        password: "{{ password }}"
+        host: "https://{{ controller_url }}"
+        name: "{{ my_server }}"
+        state: present
+        short_description: Windows Server 2022 - AWS - Demo Web Server
+        serial_number: ECE-164-E10834-NO
+        asset_tag: P1000613
+        sys_class_name: cmdb_ci_win_server
+        assigned_to: some.user
+        environment: production
+        category: Hardware
+        operational_status: operational
+        other:
+          model_number: AWS
