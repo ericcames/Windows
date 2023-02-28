@@ -2,7 +2,7 @@
   - name: Get instances info
     hosts: localhost
     connection: local
-    gather_facts: yes
+    gather_facts: no
     vars:
        ec2_security_group_name: "{{vpc_name}}_SECGRP"
        ec2_ansible_group: "{{user_name}}"
@@ -80,6 +80,10 @@
           - name: Uh-Oh things are not going well if we are here
             ansible.builtin.debug:
               msg: "{{ ansible_failed_task }}"
+
+          - name: Uh-Oh things are not going well if we are here
+            ansible.builtin.debug:
+              msg: "{{ ansible_failed_result }}"
 
           - name: Example using fail and when together
             ansible.builtin.fail:
