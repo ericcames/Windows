@@ -6,10 +6,7 @@
     vars:
        region: ''
        servername: ''
-       controller_host: "https://{{ controller_url }}"
-       controller_password: "{{ controller_passwd }}"
-       controller_username: "{{ controller_user }}"
-
+       
     tasks:
 
     - name: Get instances id with tag {{ servername }} in {{ region }}
@@ -39,6 +36,9 @@
 
     - name: Update the Windows AWS machine credential
       awx.awx.credential:
+        controller_host: "https://{{ controller_url }}"
+        controller_password: "{{ controller_passwd }}"
+        controller_username: "{{ controller_user }}"
         name: Windows AWS
         organization: Ames Company
         description: Used in the Windows AWS Demo
@@ -48,15 +48,7 @@
         inputs:
           username: Administrator
           password: "{{ admin_passwd.win_password }}"
-
-    # Make the admin password available to other playbooks
-    #- name: Capture the admin password
-    #  no_log: true
-    #  ignore_errors: true
-    #  ansible.builtin.set_stats:
-    #    data:
-    #      my_secret: "{{ admin_passwd.win_password }}"
-
+    
     - name: Capture public dns name
       register: my_server
       ansible.builtin.set_stats:
