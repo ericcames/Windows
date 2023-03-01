@@ -10,11 +10,16 @@
 
   tasks:
 
+    - name: Create the devops directory structure
+      ansible.builtin.win_file:
+        path: 'c:\Users\devops'
+        state: directory
+    
     - name: Copy the powershell performance script into place
       ansible.builtin.win_copy:
         src: scripts/powershell_performance
-        dest: 'c:\users\devops\powershell_performance'
+        dest: 'c:\Users\devops\powershell_performance'
     
     - name: Run basic PowerShell script
       ansible.windows.win_powershell:
-        script: 'c:\users\devops\powershell_performance'
+        script: 'c:\Users\devops\powershell_performance'
