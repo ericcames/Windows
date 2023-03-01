@@ -35,10 +35,6 @@
       #  ansible.builtin.debug: 
       #    msg: "{{ new_token.json.token }}"
 
-      - name: Print out the new token
-        ansible.builtin.debug: 
-          msg: "{{ controller_host }}"
-
       - name: Kick off an inventory sync
         ansible.builtin.uri:
           url: "https://{{ controller_url }}/api/v2/inventory_sources/{{ inventory_id }}/update/"
