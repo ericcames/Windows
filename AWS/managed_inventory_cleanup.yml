@@ -1,12 +1,12 @@
 ---
   - name: Clean up the Windows AWS Inventory - Managed inventory
-    hosts: all
+    hosts: localhost
+    connection: local
     gather_facts: no
 
     tasks:
 
     - name: Get an AAP API Token and store it as new_token
-      delegate_to: 127.0.0.1
       register: new_token
       ansible.builtin.uri:
         url: "https://{{ controller_url }}/api/v2/tokens/"
@@ -19,13 +19,12 @@
         return_content: yes       
 
     - name: Update the Windows AWS Managed Inventory
-      delegate_to: 127.0.0.1
       awx.awx.host:
         controller_host: "https://{{ controller_url }}"
         controller_password: "{{ controller_passwd }}"
         controller_username: "{{ controller_user }}"
         controller_oauthtoken: "{{ new_token.json.token }}"
-        name: "{{ inventory_hostname }}"
+        name: "{{ delete_inventory_host }}"
         inventory: "Windows AWS Inventory - Managed"
         state: absent
         enabled: true
