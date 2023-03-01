@@ -1,6 +1,6 @@
 ---
 - name: Improve powershell perfomance
-  hosts: "{{ my_server }}"
+  hosts: all
   gather_facts: no
   vars:
     ansible_connection: winrm

@@ -1,6 +1,6 @@
 ---
 - name: Build our custom website
-  hosts: "{{ my_server }}"
+  hosts: all
   gather_facts: no
   vars:
     iis_sites:
@@ -65,7 +65,7 @@
       
     - name: Show website addresses
       loop:
-        - http://{{ my_server }}
+        - http://{{ ansible_host }}
       ansible.builtin.debug:
         msg: "{{ item }}"
       
