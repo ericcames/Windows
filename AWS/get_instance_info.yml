@@ -75,6 +75,7 @@
         name: "{{ instance_info.instances[0].public_dns_name }}"
         inventory: "Windows AWS Inventory - Managed"
         state: present
+        enabled: true
     
     - name: Capture public dns name
       register: my_server
