@@ -31,9 +31,9 @@
           status_code: 201
           return_content: yes       
         
-      - name: Print out the new token
-        ansible.builtin.debug: 
-          msg: "{{ new_token.json.token }}"
+      #- name: Print out the new token
+      #  ansible.builtin.debug: 
+      #    msg: "{{ new_token.json.token }}"
 
       - name: Kick off an inventory sync
         ansible.builtin.uri:
