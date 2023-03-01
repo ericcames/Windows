@@ -10,16 +10,17 @@
       servicenow.itsm.configuration_item:
         name: "{{ my_server }}"
         short_description: Ansible Automation Platfrom demo
-        serial_number: ECE-164-E10834-NO
-        asset_tag: P1000613
+        serial_number: "{{ my_instance_id }}"
+        asset_tag: "{{ my_ami_id }}"
         sys_class_name: cmdb_ci_win_server
         assigned_to: hercules
         environment: production
         install_status: installed
         category: Hardware
         other:
-          model_number: BL465C G7
-        ip_address: 1.2.3.4
+          model_number: "{{ my_instance_type }}"
+          assignment_group: "Ansible West Tigers"
+        ip_address: "{{ my_public_ip }}"
         operational_status: operational
     
     - name: print the result
