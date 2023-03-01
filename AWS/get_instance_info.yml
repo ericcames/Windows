@@ -113,16 +113,4 @@
       ansible.builtin.set_stats:
         data:
           my_platform: "{{ instance_info.instances[0].platform }}"
-
-    - name: Capture mac_address
-      register: mac_address
-      ansible.builtin.set_stats:
-        data:
-          mac_address: "{{ instance_info.instances[0].mac_address }}"
-
-    - name: Capture hupervisor
-      register: my_hypervisor
-      ansible.builtin.set_stats:
-        data:
-          my_hypervisor: "{{ instance_info.instances[0].hypervisor }}"
     
