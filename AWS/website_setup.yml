@@ -65,7 +65,7 @@
       
     - name: Show website addresses
       loop:
-        - http://{{ ansible_host }}
+        - http://{{ inventory_hostname }}
       ansible.builtin.debug:
         msg: "{{ item }}"
       
