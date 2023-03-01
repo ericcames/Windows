@@ -1,5 +1,5 @@
 ---
-  - name: Control AWS instances
+  - name: Clean up the Windows AWS Inventory - Managed inventory
     hosts: all
     gather_facts: no
 
