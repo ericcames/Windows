@@ -9,6 +9,7 @@
       register: server_info
       servicenow.itsm.configuration_item:
         name: "{{ my_server }}"
+        state: present
         short_description: Ansible Automation Platfrom demo
         serial_number: "{{ my_instance_id }}"
         asset_tag: "{{ my_ami_id }}"
