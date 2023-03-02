@@ -22,5 +22,9 @@
         sys_id: "{{ result.record[0].sys_id }}"
         data:
           request_state: "{{ request_state | default(omit) }}"
-          comments: "Ansible Daily Demo Windows server {{ my_server }} has been successfully provisioned.  Hoo-yah!"
+          comments: "Provisioning Details\n\nVPC Create Time: {{ vpc_create_time }}\n\nMachine Create Time: {{ machine_create_time }}
+                     \n\nAWS Sync Time: {{ aws_sync_time }}\n\nRedHat Subscription Time: {{ subscription_time }}\n\nPost Install Time: {{ post_install_time }}
+                     \n\nRedHat Insights Time: {{ insights_time }}\n\nWebsite Start Time: {{ lamp_time }}\n\nPublic DNS Name: {{ my_server }}
+                     \n\nPublic IP Address: {{ my_public_ip }}\n\nAWS AMI ID: {{ my_ami_id }}\n\nAWS Instance ID: {{ my_instance_id }}\n\nAWS Instance Type: {{ my_instance_type }}
+                     \n\nAWS availability zone: {{ my_availability_zone }}"
           state: 3
