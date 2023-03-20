@@ -8,7 +8,7 @@
 
     - name: End the play when there is nothing in the inventory
       when:
-      -  "{{ delete_inventory_host }} is undefined"
+        delete_inventory_host is undefined
       ansible.builtin.meta: end_play     
 
     - name: Get an AAP API Token and store it as new_token
