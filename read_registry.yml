@@ -1,0 +1,14 @@
+---
+- name: read a registry entry
+  hosts: all
+
+  tasks:
+
+    - name: Obtain information about a registry key using short form
+      register: current_version
+      ansible.windows.win_reg_stat:
+        path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
+
+    - name: Print out the current_version
+      ansbile.builtin.debug:
+        var: current_version
