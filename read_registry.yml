@@ -10,5 +10,5 @@
         path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
 
     - name: Print out the current_version
-      ansbile.builtin.debug:
+      ansible.builtin.debug:
         var: current_version
