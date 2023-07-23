@@ -41,7 +41,7 @@
 
     - name: get the Administrator password
       register: admin_passwd
-      no_log: true
+      no_log: false
       ignore_errors: true
       community.aws.ec2_win_password:
         instance_id: "{{ instance_info.instances[0].instance_id }}"
