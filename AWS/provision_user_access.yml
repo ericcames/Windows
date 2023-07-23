@@ -29,7 +29,7 @@
         groups:
           - Users
           - Remote Desktop Users
-          - Adminstrators
+          - Administrators
         home_directory: 'c:\Users\devops'
         password_never_expires: yes
         update_password: "on_create"
