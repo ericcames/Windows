@@ -12,7 +12,7 @@
        my_email_address: "{{user_name}}@redhat.com"
 
     tasks:
-           
+    
       # Gather the start time to use in a later playbook
       - name: Record the vpc start time 
         delegate_to: 127.0.0.1
@@ -25,7 +25,7 @@
         ansible.builtin.set_stats:
           data:
             vpc_create_time: "{{ vpc_create_time_pre.stdout }}"
-      
+
       - name: "Create VPC {{ vpc_name }}_{{user_name}} in {{ region }}"
         register: my_vpc
         amazon.aws.ec2_vpc_net:
@@ -41,7 +41,7 @@
             Createdby: Ansible Controller
             Contact: "{{my_email_address}}"
             DeletebBy: "{{deleteby}}"
-        
+
       - name: "Display my_vpc.vpc.id info for {{vpc_name}}"
         ansible.builtin.debug:
           var: my_vpc.vpc.id
@@ -104,7 +104,7 @@
             Createdby: Ansible Controller
             Contact: "{{ my_email_address }}"
             DeleteBy: "{{deleteby}}"
-        
+
       - name: "Create IGW {{ ec2_igw_name }} for {{ vpc_name }}_{{user_name}}"
         tags:
           - createigw
@@ -120,7 +120,7 @@
             Createdby: Ansible Tower
             Contact: "{{my_email_address}}"
             DeletebBy: "{{deleteby}}"
-        
+
       - name: Create Internet route Table "{{ec2_rt_name}}"
         tags:
           - creatert
