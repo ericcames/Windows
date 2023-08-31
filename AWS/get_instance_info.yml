@@ -124,4 +124,3 @@
       ansible.builtin.set_stats:
         data:
           my_platform: "{{ instance_info.instances[0].platform }}"
-    
