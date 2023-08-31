@@ -9,7 +9,7 @@
     - name: End the play when there is nothing in the inventory
       when:
         delete_inventory_host is undefined
-      ansible.builtin.meta: end_play     
+      ansible.builtin.meta: end_play
 
     - name: Get an AAP API Token and store it as new_token
       register: new_token
@@ -21,7 +21,7 @@
         validate_certs: no
         force_basic_auth: yes
         status_code: 201
-        return_content: yes       
+        return_content: yes
 
     - name: Update the Windows AWS Managed Inventory
       awx.awx.host:
