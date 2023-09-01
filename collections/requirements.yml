@@ -7,5 +7,6 @@ collections:
   - name: amazon.aws
   - name: ansible.posix
   - name: community.aws
+    version: "6.1.0"
   - name: servicenow.itsm
   - name: awx.awx
