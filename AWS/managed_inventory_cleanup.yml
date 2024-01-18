@@ -1,10 +1,10 @@
 ---
-  - name: Clean up the Windows AWS Inventory - Managed inventory
-    hosts: localhost
-    connection: local
-    gather_facts: no
+- name: Clean up the Windows AWS Inventory - Managed inventory
+  hosts: localhost
+  connection: local
+  gather_facts: false
 
-    tasks:
+  tasks:
 
     - name: End the play when there is nothing in the inventory
       when:
@@ -18,10 +18,10 @@
         method: POST
         user: "{{ controller_user }}"
         password: "{{ controller_passwd }}"
-        validate_certs: no
-        force_basic_auth: yes
+        validate_certs: false
+        force_basic_auth: true
         status_code: 201
-        return_content: yes
+        return_content: true
 
     - name: Update the Windows AWS Managed Inventory
       awx.awx.host:
@@ -33,3 +33,4 @@
         inventory: "Windows AWS Inventory - Managed"
         state: absent
         enabled: true
+...

@@ -1,9 +1,9 @@
 ---
-  - name: The hosts in this inventory
-    hosts: all
-    gather_facts: no
+- name: The hosts in this inventory
+  hosts: all
+  gather_facts: false
 
-    tasks:
+  tasks:
 
     - name: Print out the hosts
       ansible.builtin.debug:
@@ -14,3 +14,4 @@
       ansible.builtin.set_stats:
         data:
           delete_inventory_host: "{{ inventory_hostname }}"
+...
