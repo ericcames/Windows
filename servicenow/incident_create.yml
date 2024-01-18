@@ -1,7 +1,7 @@
 ---
 - name: Creating an Incident Ticket because something went wrong
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   
   tasks:
 
@@ -25,3 +25,4 @@
       ansible.builtin.set_stats:
         data:
           incident_ticket: "{{ incident_info.record.number }}"
+...

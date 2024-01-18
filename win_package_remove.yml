@@ -1,10 +1,11 @@
 ---
-- name: Remove package with win_package 
+- name: Remove package with win_package
   hosts: all
 
   tasks:
 
     - name: Remove Visual C thingy
-      ansible.builtin.win_package:
+      ansible.windows.win_package:
         product_id: '{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}'
         state: absent
+...

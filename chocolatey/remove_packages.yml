@@ -14,3 +14,4 @@
       chocolatey.chocolatey.win_chocolatey:
         name: "{{ item.name }}"
         state: absent
+...

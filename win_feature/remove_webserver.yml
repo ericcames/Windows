@@ -4,12 +4,13 @@
 
   tasks:
 
-  - name: Ensuring W3Svc is stopped
-    win_service:
-      name: W3Svc
-      state: stopped
+    - name: Ensuring W3Svc is stopped
+      ansible.windows.win_service:
+        name: W3Svc
+        state: stopped
 
-  - name: Ensuring Web-Server feature is removed
-    win_feature:
-      name: Web-Server
-      state: absent
+    - name: Ensuring Web-Server feature is removed
+      ansible.windows.win_feature:
+        name: Web-Server
+        state: absent
+...

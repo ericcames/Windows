@@ -1,5 +1,5 @@
 ---
-- name: read a registry entry
+- name: Read a registry entry
   hosts: all
 
   tasks:
@@ -12,3 +12,4 @@
     - name: Print out the current_version
       ansible.builtin.debug:
         var: current_version
+...

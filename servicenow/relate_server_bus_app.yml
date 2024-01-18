@@ -1,7 +1,7 @@
 ---
 - name: Relating newly built server to the business application it supports
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   
   tasks: 
 
@@ -18,3 +18,4 @@
     - name: Print my_result
       ansible.builtin.debug:
         var: my_result
+...

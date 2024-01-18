@@ -1,7 +1,7 @@
 ---
 - name: creating a cmdb record
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   
   tasks:
 
@@ -27,3 +27,4 @@
     - name: print the result
       ansible.builtin.debug:
         var: server_info
+...

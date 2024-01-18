@@ -4,10 +4,11 @@
 
   tasks:
 
-  - name: Getting a list of processes on my machine
-    register: processlist
-    win_shell:  Get-Process
+    - name: Getting a list of processes on my machine
+      register: processlist
+      ansible.windows.win_shell: Get-Process
 
-  - name: Printing processlist list
-    ansible.builtin.debug:
-      var: processlist
+    - name: Printing processlist list
+      ansible.builtin.debug:
+        var: processlist
+...

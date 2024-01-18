@@ -10,3 +10,4 @@ collections:
     version: "6.1.0"
   - name: servicenow.itsm
   - name: awx.awx
+...

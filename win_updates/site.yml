@@ -1,8 +1,11 @@
 ---
-- hosts: all
-  name: This is my Windows patching playbook
+- name: This is my Windows patching playbook
+  hosts: all
+
   tasks:
+
     - name: Install Windows Updates
-      win_updates:
+      ansible.windows.win_updates:
         category_names: "{{ categories | default(omit) }}"
         reboot: '{{ reboot_server | default(true) }}'
+...

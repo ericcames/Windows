@@ -1,7 +1,7 @@
 ---
 - name: Update a catalog item in ServiceNow
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   
   tasks: 
   
@@ -27,3 +27,4 @@
                      \n\nAWS AMI ID: {{ my_ami_id }}\n\nAWS Instance ID: {{ my_instance_id }}\n\nAWS Instance Type: {{ my_instance_type }}
                      \n\nAWS availability zone: {{ my_availability_zone }}"
           state: 3
+...
