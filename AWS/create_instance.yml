@@ -29,7 +29,6 @@
               machine_create_time: "{{ machine_create_time_pre.stdout }}"
 
         - name: If vpc_subnet_id doesn't exist lookup by {{ subnet_name }}
-          when: vpc_subnet_id is undefined
           block:
 
             - name: "Looking up subnet_id for {{ subnet_name }}"
