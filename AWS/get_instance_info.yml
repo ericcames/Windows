@@ -52,6 +52,10 @@
             wait: true
             wait_timeout: 45
 
+      - name: Print out the admin password
+        ansible.builtin.debug:
+            var: admin_passwd.win_password
+
       - name: Update the Windows AWS machine credential
         awx.awx.credential:
             controller_host: "https://{{ controller_url }}"
