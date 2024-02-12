@@ -59,8 +59,6 @@
           "tag:Name": "{{ ec2_rt_name }}"
 
     - name: Remove Route Table
-      tags:
-        - rt
       amazon.aws.ec2_vpc_route_table:
         vpc_id: "{{ my_vpc.vpc.id }}"
         region: "{{ region }}"
@@ -76,8 +74,6 @@
         state: absent
 
     - name: Remove VPC
-      tags:
-        - removevpc
       amazon.aws.ec2_vpc_net:
         name: "{{ vpc_name }}_{{ user_name }}"
         cidr_block: "{{ vpc_cidr }}"
