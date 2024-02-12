@@ -65,8 +65,8 @@
                   Contact: "{{ my_email_address }}"
                   DeletebBy: "{{ ec2_ansible_group }}"
                   info: "This instance was built by the Sales Team"
-                  user_data: "{{ lookup('file', 'scripts/aws_userdata') }}"
-                  wait: true
+                user_data: "{{ lookup('file', 'scripts/aws_userdata') }}"
+                wait: true
 
             - name: "The instance variable = {{ instance }}"
               ansible.builtin.debug:
