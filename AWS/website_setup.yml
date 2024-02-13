@@ -33,7 +33,7 @@
 
     - name: Create IIS site
       with_items: "{{ iis_sites }}"
-      notify: restart iis service
+      notify: Restart iis service
       ansible.builtin.win_iis_website:
         name: "{{ item.name }}"
         state: started
