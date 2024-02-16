@@ -1,1 +1,1 @@
-# Windows FOOBAR
+# Windows
