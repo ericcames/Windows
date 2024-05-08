@@ -72,9 +72,16 @@
               ansible.builtin.debug:
                 msg: "{{ instance }}"
 
-            - name: Pause for 120 seconds to allow aws to spin things up
-              ansible.builtin.pause:
-                seconds: 120
+            # - name: Pause for 120 seconds to allow aws to spin things up
+            #   ansible.builtin.pause:
+            #     seconds: 120
+
+            - name: Wait 300 seconds for port 22 to become open and contain "OpenSSH"
+              loop: "{{ instance['instances'] }}"
+              ansible.builtin.wait_for:
+                port: 3389
+                host: "{{ item['public_ip_address'] }}"
+                delay: 10
 
           rescue:
 
